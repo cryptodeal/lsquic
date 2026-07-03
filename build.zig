@@ -90,23 +90,22 @@ pub fn build(b: *std.Build) void {
     }
 
     // --- Linking and Paths ---
-    lib.linkLibC();
-    lib.linkLibrary(ssl);
-    lib.linkLibrary(crypto);
-    lib.linkLibrary(zlib);
+    lib.root_module.linkLibrary(ssl);
+    lib.root_module.linkLibrary(crypto);
+    lib.root_module.linkLibrary(zlib);
 
     if (target.result.os.tag == .windows) {
         // Uncomment these when we have a windows test environment.
         // lib.linkSystemLibrary("ws2_32");
     } else {
-        lib.linkSystemLibrary("m");
-        lib.linkSystemLibrary("pthread");
+        lib.root_module.linkSystemLibrary("m", .{});
+        lib.root_module.linkSystemLibrary("pthread", .{});
     }
 
-    lib.addIncludePath(upstream.path("include"));
-    lib.addIncludePath(lshpack_dep.path(""));
-    lib.addIncludePath(lsqpack_dep.path(""));
-    lib.addIncludePath(lshpack_dep.path("deps/xxhash"));
+    lib.root_module.addIncludePath(upstream.path("include"));
+    lib.root_module.addIncludePath(lshpack_dep.path(""));
+    lib.root_module.addIncludePath(lsqpack_dep.path(""));
+    lib.root_module.addIncludePath(lshpack_dep.path("deps/xxhash"));
 
     lib.installHeadersDirectory(
         upstream.path("include"),
@@ -118,14 +117,14 @@ pub fn build(b: *std.Build) void {
     lib.installHeader(lshpack_dep.path("deps/xxhash/xxhash.h"), "xxhash.h");
     lib.root_module.addCMacro("XXH_HEADER_NAME", "\"xxhash.h\"");
 
-    lib.addCSourceFiles(.{
+    lib.root_module.addCSourceFiles(.{
         .root = upstream.path("src/liblsquic"),
         .files = lsquic_files,
         .flags = c_flags.items,
     });
-    lib.addCSourceFile(.{ .file = lsqpack_dep.path("lsqpack.c"), .flags = c_flags.items });
-    lib.addCSourceFile(.{ .file = lshpack_dep.path("lshpack.c"), .flags = c_flags.items });
-    lib.addCSourceFile(.{ .file = lshpack_dep.path("deps/xxhash/xxhash.c"), .flags = c_flags.items });
+    lib.root_module.addCSourceFile(.{ .file = lsqpack_dep.path("lsqpack.c"), .flags = c_flags.items });
+    lib.root_module.addCSourceFile(.{ .file = lshpack_dep.path("lshpack.c"), .flags = c_flags.items });
+    lib.root_module.addCSourceFile(.{ .file = lshpack_dep.path("deps/xxhash/xxhash.c"), .flags = c_flags.items });
 
     b.installArtifact(lib);
 }
