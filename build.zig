@@ -47,6 +47,7 @@ pub fn build(b: *std.Build) void {
     c_flags.appendSlice(b.allocator, &.{
         "-DLSQUIC_DEBUG_NEXT_ADV_TICK=1",
         "-DLSQUIC_CONN_STATS=1",
+        "-DHAVE_BORINGSSL=1",
         "-DLSQUIC_DEVEL=1",
         "-DLSQUIC_WEBTRANSPORT_SERVER_SUPPORT=1",
         // When using the Zig ReleaseSafe mode, it seems force to check for undefined behavior.

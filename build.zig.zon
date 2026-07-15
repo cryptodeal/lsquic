@@ -7,16 +7,16 @@
 
     .dependencies = .{
         .lsquic = .{
-            .url = "git+https://github.com/litespeedtech/lsquic#aecfcefa422505929ba29071442785a884571126",
-            .hash = "N-V-__8AAALQZACNAeMe8qEYieQId_sO9YzLbIyJyVwryHz_",
+            .url = "git+https://github.com/litespeedtech/lsquic#cea5765d93a2304ea8fb6d1f18bcb5dd3833d20c",
+            .hash = "N-V-__8AAOjQZQAqjz1ckVNTNnPWaQVHtcSZRgd5_5_Pc7y0",
         },
         .lshpack = .{
             .url = "git+https://github.com/litespeedtech/ls-hpack#8905c024b6d052f083a3d11d0a169b3c2735c8a1",
             .hash = "N-V-__8AAFo5VQCMGNos53oUbtdyzgRTdBedy52h5FsecO51",
         },
         .lsqpack = .{
-            .url = "git+https://github.com/litespeedtech/ls-qpack#1e9c5b8e59f8161c54f168a570c8bfdc59ded0c3",
-            .hash = "N-V-__8AAKHvVgBsNJVDKKVAFfD0XLyv3NZA7q19Lkm6ozff",
+            .url = "git+https://github.com/litespeedtech/ls-qpack#1a27f87ece031f9e2fbfb29d5b3ef0a72e0a6bbb",
+            .hash = "N-V-__8AAKzqVgDDaqGyiDU-OXtVSsE5wBLIOD0R8ALwum0Z",
         },
         .zlib = .{
             .url = "git+https://github.com/allyourcodebase/zlib.git#d3b5519d3b73616a6bfece0712f080029d2a9244",
